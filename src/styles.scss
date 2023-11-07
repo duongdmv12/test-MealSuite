@@ -1,0 +1,168 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+.alert-item,
+#alertBox {
+    right: 0;
+    top: 1rem;
+    position: absolute;
+
+    .alert-container {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+
+        .alert-item {
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            background: green;
+            color: white;
+            font-weight: bold;
+            min-width: 5rem;
+            display: flex;
+            text-align: center;
+            position: relative;
+        }
+
+        &:has(.alert-item) {
+            display: flex;
+        }
+    }
+}
+
+.shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 0.5rem;
+}
+
+.container {
+    display: flex;
+    border-radius: 5px;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .flex {
+        display: flex;
+        flex: 1;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .form-group {
+        padding: 1.5rem;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .form-control {
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+
+            label {
+                width: 5rem;
+            }
+
+            input {
+                padding: 5px;
+            }
+        }
+    }
+
+    .form-inline {
+        flex-direction: row;
+        border-radius: 5px;
+        display: flex;
+        gap: 1rem;
+
+        .form-control {
+            // display: flex;s
+            flex-direction: row;
+            gap: 0.5rem;
+
+            label {
+                width: 5rem;
+                margin-right: 0.5rem;
+            }
+
+            input {
+                padding: 5px;
+            }
+        }
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        text-align: center;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-save {
+        color: white;
+        background: rgb(29, 161, 242);
+    }
+
+    .group-action {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .mb-3 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mb-2 {
+        margin-bottom: 0.5rem;
+    }
+
+    .mr-2 {
+        margin-right: 0.5rem;
+    }
+
+    .d-list {
+
+        // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        table {
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+    .text-error {
+        color: red;
+    }
+}
+
+.breadbrumb {
+    display: flex;
+    gap: 0.5rem;
+
+    &-item {
+        padding: 0.5rem;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        &::before {
+            position: absolute;
+            content: '>';
+            right: -0.5rem;
+        }
+        &.active {
+            &::before {
+                content: '';
+            }
+        }
+    }
+}

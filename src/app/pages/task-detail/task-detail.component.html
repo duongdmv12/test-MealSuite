@@ -1,0 +1,44 @@
+<div class="breadbrumb">
+  <a class="breadbrumb-item" routerLink="/list">List</a>
+  <span class="breadbrumb-item active">detail</span>
+</div>
+<h2>Detail Task</h2>
+<ng-container *ngIf="taskDetail">
+  <div class="container">
+    <div class="flex flex-col shadow">
+      <form class="form-group" [formGroup]="formTask">
+        <div class="form-control">
+          <label for="">Id</label>
+          <input [formControlName]="'id'" type="text" />
+        </div>
+        <div class="form-control">
+          <label for="">Description</label>
+          <input [formControlName]="'description'" type="text" />
+          <span class="text-error" *ngIf="hasErrorTaskFormBy('description')">
+            Description is required
+          </span>
+        </div>
+        <div class="form-control">
+          <label for="">Assignee To</label>
+          <select formControlName="assigneeId">
+            <option value=""></option>
+            <option *ngFor="let us of users" value="{{ us.id }}">
+              {{ us.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label for="">Completed</label>
+          <input formControlName="completed" type="checkbox" />
+        </div>
+      </form>
+      <div class="group-action">
+        <button class="btn btn-save" (click)="onUpdateTask()">Update</button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!taskDetail">
+  <span>Not found data</span>
+</ng-container>

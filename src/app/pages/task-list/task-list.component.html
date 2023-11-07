@@ -1,0 +1,83 @@
+<h2>Tasks</h2>
+<div class="container">
+  <!-- FORM ADD -->
+  <div class="flex flex-col shadow">
+    <form class="form-group" [formGroup]="formTask">
+      <div class="form-control">
+        <label for="">Id</label>
+        <input [formControlName]="'id'" type="text" />
+      </div>
+      <div class="form-control">
+        <label for="">Description</label>
+        <input [formControlName]="'description'" type="text" />
+        <span class="text-error" *ngIf="hasErrorTaskFormBy('description')">
+          Description is required
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Assignee To</label>
+        <select formControlName="assigneeId">
+          <option value=""></option>
+          <option *ngFor="let us of users" value="{{ us.id }}">
+            {{ us.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-control">
+        <label for="">Completed</label>
+        <input formControlName="completed" type="checkbox" />
+      </div>
+    </form>
+    <div class="group-action">
+      <button class="btn" *ngIf="taskSelected" (click)="onCancel()">
+        Cancel
+      </button>
+      <button class="btn btn-save" (click)="onSubmit()">
+        {{ taskSelected ? "Update" : "Add" }}
+      </button>
+    </div>
+  </div>
+  <!-- FORM SEARCH -->
+  <div class="flex flex-col shadow">
+    <form class="form-inline" [formGroup]="formSearch">
+      <div class="form-control mb-2">
+        <label for="">Id</label>
+        <input (keyup.enter)="onSearch()" formControlName="id" type="text" />
+      </div>
+      <div class="form-control mb-2">
+        <label for="">Description</label>
+        <input
+          (keyup.enter)="onSearch()"
+          formControlName="description"
+          type="text"
+        />
+      </div>
+    </form>
+    <div class="group-action mb-3">
+      <button class="btn" *ngIf="hasFilterSearch()" (click)="onClearSearch()">
+        Clear Filter
+      </button>
+      <button class="btn btn-save" (click)="onSearch()">Search</button>
+    </div>
+    <!-- DISLAY LIST -->
+    <div class="d-list">
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Description</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasksFilter">
+            <td>{{ task.id }}</td>
+            <td>{{ task.description }}</td>
+            <td>
+              <button class="btn mr-2" (click)="onDetailTask(task)">Detail</button>
+              <button class="btn btn-save" (click)="onEditTask(task)">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
